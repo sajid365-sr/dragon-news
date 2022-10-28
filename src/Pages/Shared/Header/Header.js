@@ -9,19 +9,17 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import { Image } from "react-bootstrap";
 import { FaUserAlt } from "react-icons/fa";
-import Button from 'react-bootstrap/Button';
-
-
-
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 const Header = () => {
-  const { user, logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
-  const handleLogOut = () =>{
+  const handleLogOut = () => {
     logOut()
-    .then( () =>{ })
-    .catch( error => console.error(error));
-  }
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
 
   return (
     <Navbar
@@ -45,16 +43,16 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Categories</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link >Categories</Nav.Link>
+            <Nav.Link>Pricing</Nav.Link>
             <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item>Action</NavDropdown.Item>
+              <NavDropdown.Item>
                 Another action
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item>Something</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
+              <NavDropdown.Item>
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
@@ -62,29 +60,42 @@ const Header = () => {
 
           {/* User information */}
           <Nav className="align-items-center">
-            <Nav.Link href="#deets">
-
-              {
-                user?.uid ?
+            <Nav.Link>
+              {user?.uid ? (
                 <>
                   <span>{user?.displayName}</span>
-                  <Button className="ms-3" onClick={handleLogOut} variant="light">Logout</Button>
+                  <Button
+                    className="ms-3"
+                    onClick={handleLogOut}
+                    variant="light"
+                  >
+                    Logout
+                  </Button>
                 </>
-                :
+              ) : (
                 <>
-                  <Link to='/login'>Login</Link>
-                  <Link to='/register'>Register</Link>
+                  <ButtonGroup className="mb-2">
+                    <Button variant="outline-dark" className="mx-2">
+                      <Link className="text-decoration-none" to="/login">
+                        Login
+                      </Link>
+                    </Button>
+                    <Button variant="outline-dark" className="mx-2">
+                      <Link className="text-decoration-none" to="/register">
+                        Register
+                      </Link>
+                    </Button>
+                  </ButtonGroup>
                 </>
-              }
-        
-              </Nav.Link>
+              )}
+            </Nav.Link>
 
-            <Nav.Link eventKey={2} href="#memes">
+            <Nav.Link eventKey={2}>
               {user?.photoURL ? (
                 <Image
                   src={user?.photoURL}
                   roundedCircle
-                  style={{ height: "30px" }}
+                  style={{ height: "35px" }}
                 ></Image>
               ) : (
                 <FaUserAlt />
