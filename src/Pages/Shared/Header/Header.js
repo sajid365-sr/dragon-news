@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,10 +7,14 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import Logo from '../../../assets/brands/logo.png'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthPorvider';
 
 const Header = () => {
+
+  const {user} = useContext(AuthContext);
+
     return (
-        <Navbar className='mb-4 bg-opacity-25' collapseOnSelect expand="lg" bg="dark" >
+        <Navbar className='mb-4 bg-opacity-10' collapseOnSelect expand="lg" bg="dark" >
         <Container>
           <Navbar.Brand>
               <img src={Logo} alt="Dragon News Logo" className='me-3' width='40px' />
@@ -34,7 +38,7 @@ const Header = () => {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">More deets</Nav.Link>
+              <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
               <Nav.Link eventKey={2} href="#memes">
                 Dank memes
               </Nav.Link>

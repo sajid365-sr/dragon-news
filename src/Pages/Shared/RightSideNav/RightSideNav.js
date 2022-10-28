@@ -12,7 +12,8 @@ const RightSideNav = () => {
         <Button className="mb-2" variant="outline-primary">
           <FaGoogle /> Login with Google
         </Button>
-        <Button variant="outline-dark"><FaGithub /> Login with GitHub</Button>
+        <Button variant="outline-dark">
+          <FaGithub /> Login with GitHub</Button>
       </ButtonGroup>
       <div>
         <h5 className="mt-4">Find us on</h5>
