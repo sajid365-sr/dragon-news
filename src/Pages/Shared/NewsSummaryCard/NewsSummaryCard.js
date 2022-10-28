@@ -6,7 +6,7 @@ import { FaRegBookmark, FaShareAlt } from "react-icons/fa";
 
 const NewsSummaryCard = ({ news }) => {
     const {_id, title, author, image_url, details, total_view} = news;
-    console.log(news)
+    
   return (
    
       <Card className="mb-5">
