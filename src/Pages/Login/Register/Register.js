@@ -1,10 +1,10 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
-
+    const [error, setError] = useState('');
     const {createUser} = useContext(AuthContext);
 
     const handleSubmit = (event) => {
@@ -16,15 +16,24 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(name, photoURL, email, password)
+        
 
         createUser(email, password)
         .then( (result) =>{
             const user = result.user;
             console.log(user);
+            setError('');
             form.reset();
         })
-        .catch(e => console.error(e));
+        .catch(e => {
+            setError(e.message);
+        });
+        
+    
+
+        // updateUserInfo(name, photoURL)
+        // .then( () => {console.log('updated')})
+        // .catch(e => console.error(e));
 
     }
 
@@ -32,12 +41,12 @@ const Register = () => {
     <Form className="mt-5 w-75 mx-auto" onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Your Name</Form.Label>
-        <Form.Control name="name" type="text" placeholder="Your Name" />
+        <Form.Control name="name" type="text" placeholder="Your Name" required />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Photo URL</Form.Label>
-        <Form.Control name="photoURL" type="text" placeholder="Photo URL" />
+        <Form.Control name="photoURL" type="text" placeholder="Photo URL" required />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -54,9 +63,9 @@ const Register = () => {
         Register
       </Button>
 
-      {/* <Form.Text className="text-danger">
-        We'll never share your email with anyone else.
-      </Form.Text> */}
+      <Form.Text className="text-danger">
+       {error}
+      </Form.Text>
     </Form>
   );
 };

@@ -43,18 +43,14 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link >Categories</Nav.Link>
+            <Nav.Link>Categories</Nav.Link>
             <Nav.Link>Pricing</Nav.Link>
             <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
               <NavDropdown.Item>Action</NavDropdown.Item>
-              <NavDropdown.Item>
-                Another action
-              </NavDropdown.Item>
+              <NavDropdown.Item>Another action</NavDropdown.Item>
               <NavDropdown.Item>Something</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item>
-                Separated link
-              </NavDropdown.Item>
+              <NavDropdown.Item>Separated link</NavDropdown.Item>
             </NavDropdown>
           </Nav>
 
@@ -74,17 +70,13 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <ButtonGroup className="mb-2">
-                    <Button variant="outline-dark" className="mx-2">
-                      <Link className="text-decoration-none" to="/login">
-                        Login
-                      </Link>
-                    </Button>
-                    <Button variant="outline-dark" className="mx-2">
-                      <Link className="text-decoration-none" to="/register">
-                        Register
-                      </Link>
-                    </Button>
+                  <ButtonGroup>
+                    <Link className="text-decoration-none me-3" to="/login">
+                      <Button variant="outline-dark">Login</Button>
+                    </Link>
+                    <Link className="text-decoration-none" to="/register">
+                      <Button variant="outline-dark">Register</Button>
+                    </Link>
                   </ButtonGroup>
                 </>
               )}
@@ -92,13 +84,17 @@ const Header = () => {
 
             <Nav.Link eventKey={2}>
               {user?.photoURL ? (
-                <Image
-                  src={user?.photoURL}
-                  roundedCircle
-                  style={{ height: "35px" }}
-                ></Image>
+                <>
+                  <Image
+                    src={user.photoURL}
+                    roundedCircle
+                    style={{ height: "35px" }}
+                  ></Image>
+                </>
               ) : (
-                <FaUserAlt />
+                <>
+                  <FaUserAlt style={{ transform: "scale(1.3)" }} />
+                </>
               )}
             </Nav.Link>
           </Nav>
