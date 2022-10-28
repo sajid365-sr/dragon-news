@@ -13,7 +13,7 @@ const Main = () => {
       <Container>
         <Row>
           {/* Left aside */}
-          <Col lg="2">
+          <Col lg="2" className="d-none d-lg-block">
             <LeftSideNav></LeftSideNav>
           </Col>
 
