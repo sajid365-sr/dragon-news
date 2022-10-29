@@ -56,7 +56,7 @@ const Header = () => {
 
           {/* User information */}
           <Nav className="align-items-center">
-            <Nav.Link>
+            <>
               {user?.uid ? (
                 <>
                   <span>{user?.displayName}</span>
@@ -80,9 +80,9 @@ const Header = () => {
                   </ButtonGroup>
                 </>
               )}
-            </Nav.Link>
+            </>
 
-            <Nav.Link eventKey={2}>
+            <Link className="ms-3" to='/profile'>
               {user?.photoURL ? (
                 <>
                   <Image
@@ -96,7 +96,7 @@ const Header = () => {
                   <FaUserAlt style={{ transform: "scale(1.3)" }} />
                 </>
               )}
-            </Nav.Link>
+            </Link>
           </Nav>
 
           <div className="d-lg-none">

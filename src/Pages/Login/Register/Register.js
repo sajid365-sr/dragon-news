@@ -2,15 +2,18 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [error, setError] = useState("");
   const { createUser, updateUserInfo, verifyEmail } = useContext(AuthContext);
   const [accepted, setAccepted] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
 
     const form = event.target;
     const name = form.name.value;
@@ -23,8 +26,11 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         updateUserProfile(name, photoURL);
+        handleEmailVerification();
         setError("");
         form.reset();
+        toast.success('Check your email to verify.');
+        navigate('/login');
       })
       .catch((e) => {
         setError(e.message);
@@ -44,6 +50,12 @@ const Register = () => {
   const handleAccepted = (event) => {
     setAccepted(event.target.checked);
   };
+
+  const handleEmailVerification = () =>{
+    verifyEmail()
+    .then(() =>{})
+    .catch(e => console.error(e));
+  }
 
   return (
     <Form className="mt-5 w-75 mx-auto" onSubmit={handleSubmit}>
