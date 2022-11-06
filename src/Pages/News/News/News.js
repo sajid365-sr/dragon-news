@@ -6,12 +6,13 @@ import { Link } from "react-router-dom";
 import Image from 'react-bootstrap/Image'
 import { FaRegBookmark, FaShareAlt } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
+import useTitle from '../../../Hooks/useTitle';
 
 const News = () => {
 
     const newsDetails = useLoaderData();
     const {_id, title, author, image_url, details, total_view} = newsDetails;
-    console.log(newsDetails)
+    useTitle('News Details');
 
     return (
         <div>

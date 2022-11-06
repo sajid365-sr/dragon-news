@@ -4,19 +4,20 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import useTitle from "../../../Hooks/useTitle";
 
 
 
 const Login = () => {
 
-
+  
     const [error, setError] = useState('');
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
     const navigate = useNavigate();
     const {signIn, setLoading} = useContext(AuthContext);
-
+    useTitle('Login');
 
     const handleSubmit = (event) =>{
         event.preventDefault();

@@ -4,12 +4,14 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import useTitle from "../../../Hooks/useTitle";
 
 const Register = () => {
   const [error, setError] = useState("");
   const { createUser, updateUserInfo, verifyEmail } = useContext(AuthContext);
   const [accepted, setAccepted] = useState(false);
   const navigate = useNavigate();
+  useTitle('Register');
 
   const handleSubmit = (event) => {
     event.preventDefault();
